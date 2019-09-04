@@ -7,7 +7,7 @@ variable "REGION" {
 }
 
 variable "AMIS" {
-  type = "map"
+  type = map(string)
   default = {
     us-east-1 = "ami-0b898040803850657"
     eu-central-1 = "ami-0cc293023f983ed53"
@@ -15,7 +15,7 @@ variable "AMIS" {
 }
 
 variable "USERNAME" {
-  default = "terraform"
+  default = "ec2-user"
 }
 
 variable "PRIVATE_KEY" {
