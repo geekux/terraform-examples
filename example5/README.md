@@ -23,7 +23,7 @@ module "ec2-example-virginia" {
 }
 ```
 
-AWS use [cloud-init](https://cloud-init.io) for configuration of Linux instance at launch. Cloud-init has possibility to inject user configuration. Option is known as *user data* and it's supported by AWS API. It's possible to add custom script or *cloud-init* compatibile directive. 
+AWS use [cloud-init](https://cloud-init.io) for configuration of Linux instance at launch. Cloud-init has possibility to inject user configuration. Option is known as **user data** and it's supported by AWS API. It's possible to add custom script or **cloud-init** compatibile directive. 
 
 ```terraform
 resource "aws_instance" "this" {
@@ -34,3 +34,23 @@ resource "aws_instance" "this" {
   user_data = templatefile("${path.module}/script.tpl", { packages = var.packages, services = var.services })
 }
 ``` 
+
+In addition **user data** script can be parametrized with Terraform variables. In such form it's called a template.
+
+```bash
+#!/bin/bash
+
+# update OS
+yum -y update
+
+# install packages
+%{ for package in packages ~}
+yum -y install ${package}
+%{ endfor ~}
+
+# start services
+%{ for service in services ~}
+systemctl enable ${service}
+systemctl start ${service}
+%{ endfor ~}
+```
