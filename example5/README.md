@@ -1,6 +1,6 @@
 ## Modules, Templates and Locals
 
-Module is analogy to functions in programming language. It allows to define reusable Terraform code. Modules can be stored locally or in git. There is number of modules avialable on github where some of them are verified by [Terraform Team](https://registry.terraform.io/). Local variables have limited scope to module where they were declared.
+Module is analogy to functions in programming language. It allows to define reusable Terraform code. Modules can be stored locally or on git. There is number of modules avialable on github where some of them are verified by [Terraform Team](https://registry.terraform.io/).
 
 ```terraform
 module "ec2-example" {
@@ -20,6 +20,14 @@ module "ec2-example-virginia" {
   instance_type = "t2.micro"
   packages = ["httpd", "telnet"]
   services = ["httpd"]
+}
+```
+
+Variables can be created as a local ones. In such case they have limited scope to module where they were declared. Terraform supports JavaScript-like ternary operator: **condition ? exprIfTrue : exprIfFalse**.
+
+```terraform
+locals {
+  ami = var.ami != "" ? var.ami : data.aws_ami.amazon-linux-2-x86_64-gp2.id
 }
 ```
 
