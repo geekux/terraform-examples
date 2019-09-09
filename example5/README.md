@@ -23,7 +23,7 @@ module "ec2-example-virginia" {
 }
 ```
 
-Variables can be created as a local ones. In such case they have limited scope to module where they were declared. Terraform supports JavaScript-like ternary operator: **condition ? exprIfTrue : exprIfFalse**.
+Variables can be created as a local ones. In such case they have limited scope to module where they were declared. Terraform supports JavaScript-like ternary operator: **condition ? expresionIfTrue : expresionIfFalse**.
 
 ```terraform
 locals {
