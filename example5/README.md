@@ -1,6 +1,6 @@
 ## Modules, Templates and Locals
 
-Module is analogy to functions in programming language. It allows to define reusable Terraform code. Modules can be stored locally or on git. There is number of modules avialable on github where some of them are verified by [Terraform Team](https://registry.terraform.io/).
+Modules are analogy to functions in programming language. They allow to define reusable Terraform code. Modules can be stored locally or on git. There is number of modules avialable on github where some of them are verified by [Terraform Team](https://registry.terraform.io/).
 
 ```terraform
 module "ec2-example" {
