@@ -3,6 +3,21 @@ resource "aws_key_pair" "terraform" {
   public_key = file(var.PUBLIC_KEY)
 }
 
+data "aws_ami" "amazon-linux-2-x86_64-gp2" {
+  most_recent = true
+  owners = ["amazon"]
+
+  filter {
+    name = "name"
+    values = ["amzn2-ami-hvm*-gp2"]
+  }
+
+  filter {
+    name = "architecture"
+    values = ["x86_64"]
+  }
+}
+
 resource "aws_instance" "example" {
   ami = data.aws_ami.amazon-linux-2.id
   instance_type = "t2.micro"
