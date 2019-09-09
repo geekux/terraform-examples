@@ -1,8 +1,8 @@
 ## Modules, Templates and Locals
 
-Module is analogy to functions in programming language. It allows to define reusable Terraform code. Modules can be stored locally or in git. There is number of modules avialable on github where some of them are verified by [https://registry.terraform.io/](Terraform Team). Local variables have limited scope to module where they were declared.
+Module is analogy to functions in programming language. It allows to define reusable Terraform code. Modules can be stored locally or in git. There is number of modules avialable on github where some of them are verified by [Terraform Team](https://registry.terraform.io/). Local variables have limited scope to module where they were declared.
 
-```
+```terraform
 module "ec2-example" {
   source = "./modules/ec2"
   key_name = aws_key_pair.terraform.key_name
@@ -23,9 +23,9 @@ module "ec2-example-virginia" {
 }
 ```
 
-AWS use [https://cloud-init.io/](cloud-init) for configuration of Linux instance at launch. Cloud-init has possibility to inject user configuration. Option is known as *user data* and it's supported by AWS API. It's possible to add custom script or *cloud-init* compatibile directive. 
+AWS use [cloud-init](https://cloud-init.io) for configuration of Linux instance at launch. Cloud-init has possibility to inject user configuration. Option is known as *user data* and it's supported by AWS API. It's possible to add custom script or *cloud-init* compatibile directive. 
 
-```
+```terraform
 resource "aws_instance" "this" {
   ami = local.ami
   instance_type = "t2.micro"
